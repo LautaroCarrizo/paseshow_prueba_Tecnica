@@ -1,9 +1,11 @@
 package com.lautaro.prueba_tecnica_paseshow.config.spring_security;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
+@Configuration
 public class SpringSecurityClass {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
