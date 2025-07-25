@@ -1,17 +1,19 @@
 package com.lautaro.prueba_tecnica_paseshow.servicies;
 
 import com.lautaro.prueba_tecnica_paseshow.dto.TicketDTO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface TicketServicie {
-    public List<TicketDTO> getTickets();
+    public List<TicketDTO> getAllTicketsServicie();
 
-    public TicketDTO getTicket(Long id);
+    public TicketDTO getTicketServicie(Long id);
 
-    public TicketDTO postTicket(TicketDTO dto);
+    public TicketDTO postTicketServicie(TicketDTO dto);
 
-    public TicketDTO updateTicket(TicketDTO dto, Long id);
+    public TicketDTO updateTicketServicie(TicketDTO dto, Long id);
 
-    public void deleteTicket();
+    public void deleteTicketServicie(Long id);
 }

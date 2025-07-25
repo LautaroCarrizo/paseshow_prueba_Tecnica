@@ -2,18 +2,19 @@ package com.lautaro.prueba_tecnica_paseshow.servicies;
 
 
 import com.lautaro.prueba_tecnica_paseshow.dto.ClienteDTO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public interface ClienteServicie {
 
-    public List<ClienteDTO> getClientes();
+    public List<ClienteDTO> getAllClientesServicie();
 
-    public ClienteDTO getCliente(Long id);
+    public ClienteDTO getClienteServicie(Long id);
 
-    public ClienteDTO postCliente(ClienteDTO dto);
+    public ClienteDTO postClienteServicie(ClienteDTO dto);
 
-    public ClienteDTO updateCliente(ClienteDTO dto, Long id);
+    public ClienteDTO updateClienteServicie(ClienteDTO dto, Long id);
 
-    public void deleteCliente();
+    public void deleteClienteServicie(Long id);
 }
