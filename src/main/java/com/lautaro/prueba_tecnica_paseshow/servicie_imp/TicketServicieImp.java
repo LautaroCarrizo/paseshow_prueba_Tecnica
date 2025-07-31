@@ -39,11 +39,16 @@ public class TicketServicieImp implements TicketServicie {
 
     @Override
     public TicketDTO postTicketServicie(TicketDTO dto) {
-        Cliente cliente = repo_cliente.findById(dto.getId()).orElseThrow(() -> new RuntimeException("Cliente no encontrado con ID: " + dto.getId()));
+        Cliente cliente = repo_cliente.findById(dto.getClienteId())
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado con ID: " + dto.getClienteId()));
         if (cliente.getTickets().isEmpty()) {
             throw new RuntimeException("El cliente no tiene tickets");
         }
-        Ticket ticket = modelMapper.map(dto, Ticket.class);
+        Ticket ticket = new Ticket();
+        ticket.setCliente(cliente);
+        ticket.setEvento(dto.getEvento());
+        ticket.setCosto(dto.getCosto());
+        ticket.setFechaVigencia(dto.getFechaVigencia());
         Ticket ticketGuardado = repo_ticket.save(ticket);
         return modelMapper.map(ticketGuardado, TicketDTO.class);
     }
