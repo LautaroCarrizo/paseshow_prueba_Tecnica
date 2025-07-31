@@ -4,6 +4,7 @@ import com.lautaro.prueba_tecnica_paseshow.dto.ClienteDTO;
 import com.lautaro.prueba_tecnica_paseshow.model.Cliente;
 import com.lautaro.prueba_tecnica_paseshow.servicies.ClienteServicie;
 import com.lautaro.prueba_tecnica_paseshow.repository.ClienteRepository;
+import com.lautaro.prueba_tecnica_paseshow.servicies.ClienteValidacionServicie;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,8 @@ public class ClienteServicieImp implements ClienteServicie {
     private ClienteRepository repo_cliente;
     @Autowired
     private ModelMapper modelMapper;
-    private ClienteValidacionExternaImp validacionExterna = new ClienteValidacionExternaImp();
+    @Autowired
+    private ClienteValidacionServicie validacionExterna;
 
     @Override
     public List<ClienteDTO> getAllClientesServicie() {

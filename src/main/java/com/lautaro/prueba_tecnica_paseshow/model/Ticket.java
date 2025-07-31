@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Data
 @Entity
+@Table(name = "tickets")
 @NoArgsConstructor
 public class Ticket {
     @Id
