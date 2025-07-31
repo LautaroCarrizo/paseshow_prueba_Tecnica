@@ -1,5 +1,4 @@
 package com.lautaro.prueba_tecnica_paseshow.servicie_imp;
-import com.lautaro.prueba_tecnica_paseshow.dto.ClienteDTO;
 import com.lautaro.prueba_tecnica_paseshow.dto.TicketDTO;
 import com.lautaro.prueba_tecnica_paseshow.model.Cliente;
 import com.lautaro.prueba_tecnica_paseshow.model.Ticket;
