@@ -1,5 +1,7 @@
 package com.lautaro.prueba_tecnica_paseshow.servicie_imp;
 import com.lautaro.prueba_tecnica_paseshow.dto.TicketDTO;
+import com.lautaro.prueba_tecnica_paseshow.exception.exceptions.NoTicketsException;
+import com.lautaro.prueba_tecnica_paseshow.exception.exceptions.ResourceNotFoundException;
 import com.lautaro.prueba_tecnica_paseshow.model.Cliente;
 import com.lautaro.prueba_tecnica_paseshow.model.Ticket;
 import com.lautaro.prueba_tecnica_paseshow.repository.ClienteRepository;
@@ -32,16 +34,16 @@ public class TicketServicieImp implements TicketServicie {
     @Override
     public TicketDTO getTicketServicie(Long id) {
         Ticket ticket = repo_ticket.findById(id)
-                .orElseThrow(() -> new RuntimeException("Ticket no encontrado con ID: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Ticket no encontrado con ID: " + id));
         return modelMapper.map(ticket, TicketDTO.class);
     }
 
     @Override
     public TicketDTO postTicketServicie(TicketDTO dto) {
         Cliente cliente = repo_cliente.findById(dto.getClienteId())
-                .orElseThrow(() -> new RuntimeException("Cliente no encontrado con ID: " + dto.getClienteId()));
+                .orElseThrow(() -> new ResourceNotFoundException("Cliente no encontrado con ID: " + dto.getClienteId()));
         if (cliente.getTickets().isEmpty()) {
-            throw new RuntimeException("El cliente no tiene tickets");
+            throw new NoTicketsException("El cliente no tiene tickets");
         }
         Ticket ticket = new Ticket();
         ticket.setCliente(cliente);
@@ -54,7 +56,7 @@ public class TicketServicieImp implements TicketServicie {
 
     @Override
     public TicketDTO updateTicketServicie(TicketDTO dto, Long id) {
-        Ticket ticket = repo_ticket.findById(id).orElseThrow(() -> new RuntimeException("Cliente no encontrado con ID: " + id));
+        Ticket ticket = repo_ticket.findById(id).orElseThrow(() -> new ResourceNotFoundException("Cliente no encontrado con ID: " + id));
         ticket.setCosto(dto.getCosto());
         ticket.setEvento(dto.getEvento());
         ticket.setFechaVigencia(dto.getFechaVigencia());
@@ -64,7 +66,7 @@ public class TicketServicieImp implements TicketServicie {
 
     @Override
     public void deleteTicketServicie(Long id) {
-        Ticket ticket = repo_ticket.findById(id).orElseThrow(() -> new RuntimeException("Ticket no encontrado con ID: " + id));
+        Ticket ticket = repo_ticket.findById(id).orElseThrow(() -> new ResourceNotFoundException("Ticket no encontrado con ID: " + id));
         repo_ticket.delete(ticket);
     }
 }
