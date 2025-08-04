@@ -43,7 +43,6 @@ useEffect(() => {
             <strong>Evento:</strong> {ticket.evento} | 
             <strong> Costo:</strong> ${ticket.costo} | 
             <strong> Fecha:</strong> {ticket.fechaVigencia} | 
-            <strong> Cliente:</strong> {ticket.cliente.nombre} {ticket.cliente.apellido}
           </li>
         ))}
       </ul>
